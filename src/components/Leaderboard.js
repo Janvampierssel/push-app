@@ -1,4 +1,4 @@
-const Leaderboard = ({ users }) => {
+const Leaderboard = ({ users, deleteUser }) => {
   return (
     <div className="leaderboard">
       <h2>Leaderboard</h2>
@@ -6,6 +6,7 @@ const Leaderboard = ({ users }) => {
         <div className="user" key={user.name}>
           <p>Name: {user.name}</p>
           <p>Push-ups: {user.pushups}</p>
+          <button onClick={() => deleteUser(user)}>Delete User</button>
         </div>
       ))}
     </div>
