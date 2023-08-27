@@ -12,6 +12,8 @@ import {
   updateDoc,
   deleteDoc,
   doc,
+  query,
+  orderBy,
 } from "firebase/firestore";
 
 function App() {
@@ -75,7 +77,9 @@ function App() {
   };
 
   const updateUsersUI = async () => {
-    const data = await getDocs(usersCollectionRef);
+    const q = query(usersCollectionRef, orderBy("pushups", "desc"));
+    const data = await getDocs(q);
+
     setUsersList(
       data.docs.map((doc) => ({
         ...doc.data(),
