@@ -1,6 +1,8 @@
 import Header from "./components/Header";
 import AddPushUp from "./components/AddPushUp";
 import Leaderboard from "./components/Leaderboard";
+import SignInAndOut from "./components/SignInAndOut";
+
 import { useState, useEffect } from "react";
 import { db } from "./firebase-config";
 import {
@@ -13,9 +15,11 @@ import {
 } from "firebase/firestore";
 
 function App() {
-  const [users, setUsers] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [usersList, setUsersList] = useState([]);
   const usersCollectionRef = collection(db, "users");
 
+  // Funtions
   const bankPushUp = async (name, pushUpsToAdd) => {
     const user = findUserByName(name);
     console.log(`${name} will get ${pushUpsToAdd} pushups banked!`);
@@ -26,33 +30,32 @@ function App() {
   };
 
   const findUserByName = (n) => {
-    const user = users.find((user) => user.name === n);
+    const user = usersList.find((user) => user.name === n);
     const output = user ? user : null;
     return output;
   };
 
   const findUserByID = (id) => {
-    const user = users.find((user) => user.id === id);
+    const user = usersList.find((user) => user.id === id);
     const output = user ? user : null;
     return output;
   };
 
-  const newUser = async (name, pushups) => {
-    // Server Update
+  const newUser = async (name, pushUpsToAdd) => {
+    // Update Server
     await addDoc(usersCollectionRef, {
       name: name,
-      pushups: Number(pushups),
-    }).then(
-      () => {
-        alert(`New user ${name} added with ${pushups} pushups!`);
-      },
-      (error) => {
-        alert("Something went wrong. Error: " + error);
-      }
-    );
+      pushups: Number(pushUpsToAdd),
+    })
+      .then(() => {
+        alert(`New user ${name} added with ${pushUpsToAdd} pushups!`);
+      })
+      .catch((error) => {
+        alert("Whoopsiedoopsie, something went wrong!. Error: " + error);
+      });
 
-    // Update from server
-    await updateUsers();
+    // Update UI
+    await updateUsersUI();
   };
 
   const updateUser = async (id, pushUpsToAdd) => {
@@ -62,27 +65,18 @@ function App() {
       pushups: userToUpdate.pushups + Number(pushUpsToAdd),
     });
     // Update from server
-    await updateUsers();
+    await updateUsersUI();
   };
 
   const deleteUser = async (target) => {
-    setUsers(users.filter((user) => user.id !== target.id));
+    setUsersList(usersList.filter((user) => user.id !== target.id));
     const docToDelete = doc(db, "users", target.id);
     await deleteDoc(docToDelete);
   };
 
-  // to understand this fucking mess, play with logging 'data'
-  useEffect(() => {
-    const getUsers = async () => {
-      await updateUsers();
-    };
-
-    getUsers();
-  }, []);
-
-  const updateUsers = async () => {
+  const updateUsersUI = async () => {
     const data = await getDocs(usersCollectionRef);
-    setUsers(
+    setUsersList(
       data.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
@@ -90,11 +84,22 @@ function App() {
     );
   };
 
+  useEffect(() => {
+    const getUsers = async () => {
+      await updateUsersUI();
+    };
+
+    getUsers();
+  }, []);
+
   return (
-    <div className="App">
+    <div className="app">
       <Header />
-      <AddPushUp newUser={newUser} bankPushUp={bankPushUp} />
-      <Leaderboard users={users} deleteUser={deleteUser} />
+      <SignInAndOut currentUser={currentUser} setCurrentUser={setCurrentUser} />
+      {currentUser && (
+        <AddPushUp currentUser={currentUser} bankPushUp={bankPushUp} />
+      )}
+      <Leaderboard usersList={usersList} updateUsersUI={updateUsersUI} />
     </div>
   );
 }
