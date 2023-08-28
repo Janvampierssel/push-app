@@ -1,31 +1,54 @@
 import { useState } from "react";
+import CircularSlider from '@fseehawer/react-circular-slider';
 
 const AddPushUp = ({ currentUser, bankPushUp }) => {
-  const [pushUps, setPushUps] = useState("");
-
-  const onSubmit = (e) => {
-    e.preventDefault();
+  let pushUps = 0;
+  const [draggable, setDraggable] = useState(true);
+  const [knobPosition, setKnobPosition] = useState(-0.49);
+  
+  const submit = () => {
     bankPushUp(currentUser.displayName, pushUps);
-    setPushUps("");
   };
 
-  return (
-    <>
-      <form className="add-form" onSubmit={onSubmit}>
-        <div className="form-element">
-          <label>How many push-ups <br/>to bank?</label>
-          <input
-            type="text"
-            placeholder="+/-"
-            value={pushUps}
-            onChange={(e) => setPushUps(e.target.value)}
-          />
-        </div>
+  const capSlider = (value) => {
+    setDraggable(false);
+    setKnobPosition(value % 10 - 0.49);
+  }
 
-        <input type="submit" value="Bank" className="form-button bank-button" />
-      </form>
-    </>
-  );
+  return (
+    <div className="bank">
+          <CircularSlider
+            label="of 200"
+            labelColor="#005a58"
+            knobColor="#005a58"
+            progressColorFrom="#00bfbd"
+            progressColorTo="#009c9a"
+            min={-100}
+            max={200}
+            continuous={{
+              enabled: true,
+              clicks: 10,
+              increment: 1,
+            }}
+            labelBottom={true}
+            width={200}
+            progressSize={25}
+            knobSize={60}
+            trackColor="#eeeeee"
+            trackSize={20}
+            initialValue={0}
+            trackDraggable={false}
+            dataIndex={knobPosition}
+            knobDraggable={draggable}
+            onChange={ value => { 
+              pushUps = value;
+              value >= 200 && capSlider(value); }}
+            isDragging={(dragging) => {!dragging && setDraggable(true)}}
+        > </CircularSlider>
+
+        <button className="bank-button" onClick={submit}>Bank</button>
+    </div>
+  ); // Value change works on a non-continuous slider: https://github.com/fseehawer/react-circular-slider/issues/57
 };
 
 export default AddPushUp;

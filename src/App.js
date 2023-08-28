@@ -70,11 +70,11 @@ function App() {
     await updateUsersUI();
   };
 
-  const deleteUser = async (target) => {
+  /*   const deleteUser = async (target) => {
     setUsersList(usersList.filter((user) => user.id !== target.id));
     const docToDelete = doc(db, "users", target.id);
     await deleteDoc(docToDelete);
-  };
+  }; */
 
   const updateUsersUI = async () => {
     const q = query(usersCollectionRef, orderBy("pushups", "desc"));

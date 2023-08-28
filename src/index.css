@@ -18,40 +18,11 @@ body {
   width: 300px;
 }
 
-.add-form {
-  margin: 50px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.form-element {
-  margin: 10px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.add-form label {
-  font-size: 1.2rem;
-  display: block;
-  margin-bottom: 30px;
-}
-
-input[type="text"] {
-  width: 50px;
-  height: 30px;
-  border: 2px solid rgb(255, 208, 192);
-  border-radius: 3px;
-  text-align: center;
-}
-
 .user {
   margin: 20px 0;
 }
 
-button, .form-button {
+button {
   display: inline-block;
   background: #000;
   color: #fff;
@@ -65,9 +36,17 @@ button, .form-button {
   font-family: inherit;
 }
 
+.bank {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 80px 0;
+}
+
 .bank-button {
   font-size: 1rem;
   padding: 10px 40px;
+  margin-top: 30px;
   background-color: coral;
 }
 
