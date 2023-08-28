@@ -19,10 +19,10 @@ const AddPushUp = ({ currentUser, bankPushUp }) => {
     <div className="bank">
           <CircularSlider
             label="of 200"
-            labelColor="#005a58"
-            knobColor="#005a58"
-            progressColorFrom="#00bfbd"
-            progressColorTo="#009c9a"
+            labelColor="coral"
+            knobColor="#f6d039"
+            progressColorFrom="#f69e39"
+            progressColorTo="#f6ba39"
             min={-100}
             max={200}
             continuous={{
