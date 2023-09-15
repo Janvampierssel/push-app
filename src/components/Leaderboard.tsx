@@ -25,7 +25,7 @@ const Leaderboard = ({ usersList, updateUsersUI }) => {
       </div>
       <div className="winner-previous-round">
         <p style={{fontSize:".8rem"}}>Winner of previous round</p>
-        <p style={{display:"inline-block", width:"60%", borderLeft:"2px solid #f69e39", padding:"5px 8px", marginTop:"3px"}}>Roman Klijn!</p>
+        <p style={{display:"inline-block", width:"40%", borderTop:"1.5px solid #f69e39", padding:"5px 8px", marginTop:"3px"}}>Roman Klijn!</p>
       </div>
     </div>
   );
