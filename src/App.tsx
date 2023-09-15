@@ -23,12 +23,12 @@ function App() {
 
   // Funtions
   const bankPushUp = async (name, pushUpsToAdd) => {
-    const user = findUserByName(name);
+    const user = await findUserByName(name);
     console.log(`${name} will get ${pushUpsToAdd} pushups banked!`);
 
     user === null
-      ? newUser(name, pushUpsToAdd)
-      : updateUser(user.id, pushUpsToAdd);
+      ? await newUser(name, pushUpsToAdd)
+      : await updateUser(user.id, pushUpsToAdd);
   };
 
   const findUserByName = (n) => {
@@ -47,6 +47,7 @@ function App() {
     // Update Server
     await addDoc(usersCollectionRef, {
       name: name,
+      pushUpsCurrentRound: Number(pushUpsToAdd),
       pushups: Number(pushUpsToAdd),
     })
       .then(() => {
@@ -65,6 +66,7 @@ function App() {
     const specificUserDoc = doc(db, "users", id);
     await updateDoc(specificUserDoc, {
       pushups: userToUpdate.pushups + Number(pushUpsToAdd),
+      pushUpsCurrentRound: userToUpdate.pushUpsCurrentRound + Number(pushUpsToAdd),
     });
     // Update from server
     await updateUsersUI();
@@ -77,7 +79,7 @@ function App() {
   }; */
 
   const updateUsersUI = async () => {
-    const q = query(usersCollectionRef, orderBy("pushups", "desc"));
+    const q = query(usersCollectionRef, orderBy("pushUpsCurrentRound", "desc"));
     const data = await getDocs(q);
 
     setUsersList(

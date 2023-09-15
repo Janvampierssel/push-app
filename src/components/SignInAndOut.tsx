@@ -1,6 +1,6 @@
 import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
 import { auth, googleProvider } from '../firebase-config';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FC } from 'react';
 
 const SignInAndOut = ({ currentUser, setCurrentUser }) => {
   const [signInHidden, setSignInHidden] = useState(false);
@@ -37,17 +37,17 @@ const SignInAndOut = ({ currentUser, setCurrentUser }) => {
 
   return (
     <div className="sign-in-out">
-      {!signInHidden && <section id="section-signed-out">
+      {!currentUser && <section id="section-signed-out">
         <p>Sign in to bank your pushups</p>
         <button className="button-sign-in" onClick={doSignIn}>
           Sign in with Google
         </button>
       </section>}
-      {signInHidden && <section id="section-signed-in">
-        {currentUser && <div>
+      {currentUser && <section id="section-signed-in">
+        <div>
             <small className="user-details">Your name:</small>
             <p>{currentUser.displayName}</p>
-        </div>}
+        </div>
         <button className="button-sign-out" onClick={doSignOut}>
           Sign Out
         </button>

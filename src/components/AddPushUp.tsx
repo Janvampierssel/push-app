@@ -6,8 +6,15 @@ const AddPushUp = ({ currentUser, bankPushUp }) => {
   const [draggable, setDraggable] = useState(true);
   const [knobPosition, setKnobPosition] = useState(-0.49);
   
-  const submit = () => {
-    bankPushUp(currentUser.displayName, pushUps);
+  const submit = async() => {
+    try {
+      await bankPushUp(currentUser.displayName, pushUps);
+      alert("Push-ups Banked!");
+      window.location.reload();
+    }
+    catch(err) {
+      alert("Error with submit: " + err);
+    }
   };
 
   const capSlider = (value) => {
@@ -28,7 +35,7 @@ const AddPushUp = ({ currentUser, bankPushUp }) => {
             continuous={{
               enabled: true,
               clicks: 10,
-              increment: 1,
+              interval: 1,
             }}
             labelBottom={true}
             width={200}
