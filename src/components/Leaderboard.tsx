@@ -6,12 +6,12 @@ const Leaderboard = ({ usersList, updateUsersUI }) => {
       <div className="leaderboard-header">
         <div>
           <h2 style={{display: 'inline-block', margin:"0"}}>Leaderboard</h2>
-          <h3 style={{marginTop:"0px", fontWeight:"normal"}}>Push-ups, Round 3</h3>
+          <h3 style={{marginTop:"0px", fontWeight:"normal"}}>Push-ups, Final Round</h3>
         </div>
           <FaSyncAlt style={{color:"#f69e39", paddingRight: "10px", cursor: "pointer", marginTop:"8px"}} onClick={updateUsersUI}/>
       </div>
       <div className="leaderboard-users">
-      <p style={{marginBottom:"5px", fontSize:".7rem", color:"gray", marginLeft:"10px"}}>Deadline: Sunday 2nd Oct, 22:00</p>
+      <p style={{marginBottom:"5px", fontSize:".7rem", color:"gray", marginLeft:"10px"}}>Deadline: Sunday 15th Oct, 22:00</p>
         {usersList.map((user) => (
           <div className="user" key={user.name}>
             <div style={{display: "flex", justifyContent: 'space-between'}}>
@@ -25,7 +25,7 @@ const Leaderboard = ({ usersList, updateUsersUI }) => {
       </div>
       <div className="winner-previous-round">
         <p style={{fontSize:".8rem"}}>Winner of previous round</p>
-        <p style={{display:"inline-block", width:"50%", borderTop:"1.5px solid #f69e39", padding:"5px 8px", marginTop:"3px"}}>Jan van Ierssel!</p>
+        <p style={{display:"inline-block", width:"50%", borderTop:"1.5px solid #f69e39", padding:"5px 8px", marginTop:"3px"}}>Jordan Reid</p>
       </div>
     </div>
   );
