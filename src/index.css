@@ -16,6 +16,26 @@ body {
 
 .app {
   width: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 992px) {
+  .app {
+    flex-direction: row;
+    height: 100vh;
+    width: auto;
+    align-items: center;
+  }
+
+  .leaderboard {
+    margin-left: 10%;
+    width: 420px;
+  }
+
+  .add-section {
+    width: 420px;
+  }
 }
 
 button {

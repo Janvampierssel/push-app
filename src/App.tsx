@@ -100,11 +100,13 @@ function App() {
 
   return (
     <div className="app">
+      <div className="add-section">
       <Header />
       <SignInAndOut currentUser={currentUser} setCurrentUser={setCurrentUser} />
       {currentUser && (
         <AddPushUp currentUser={currentUser} bankPushUp={bankPushUp} />
       )}
+      </div>
       <Leaderboard usersList={usersList} updateUsersUI={updateUsersUI} />
     </div>
   );
