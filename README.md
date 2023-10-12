@@ -1,3 +1,5 @@
+Public URL: https://push-app-phi.vercel.app/
+
 # Push App
 
 An app where you and your friends push each other to do challenges you never thought you could.
