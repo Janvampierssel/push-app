@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String          @id @default(uuid())
+  email      String          @unique
+  name       String?
+  username   String?
+  image      String?
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+  challenges UserChallenge[]
+}
+
+model Challenge {
+  id          Int             @id @default(autoincrement())
+  title       String
+  description String?
+  pushUpsGoal Int             @default(1000)
+  ownerID     Int             @default(0)
+  createdAt   DateTime        @default(now())
+  startsAt    DateTime?
+  endsAt      DateTime?
+  public      Boolean         @default(true)
+  users       UserChallenge[]
+}
+
+model UserChallenge {
+  userID      String
+  user        User      @relation(fields: [userID], references: [id])
+  challengeID Int
+  challenge   Challenge @relation(fields: [challengeID], references: [id])
+  pushUps     Int       @default(0)
+
+  @@id([userID, challengeID])
+}
+
+// Whenever you update your Prisma schema, you will have to update your database schema using either prisma migrate dev or prisma db push. 
+// This will keep your database schema in sync with your Prisma schema. The commands will also regenerate Prisma Client.
