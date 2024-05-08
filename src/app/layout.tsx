@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "../styles/globals.css";
 import { cn } from "@/lib/utils";
-import Nav from "@/components/Nav";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -27,8 +26,11 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <Nav />
+        {/* Background Radial Gradient */}
         {children}
+        <div className="absolute h-screen w-screen overflow-hidden pointer-events-none">
+          <div className="background-gradient-radial h-full absolute left-0 right-0 mx-auto top-1/3 -z-10 pointer-events-none"></div>
+        </div>
       </body>
     </html>
   );

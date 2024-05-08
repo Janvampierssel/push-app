@@ -1,9 +1,13 @@
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import PushAppLogo from "@/icons/PushAppLogo";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  Nav,
+  LoggedInRightChildren,
+  LoggedOutRightChildren,
+} from "@/components/Nav";
 
 export default function Home() {
   function Pillar({
@@ -28,6 +32,19 @@ export default function Home() {
 
   return (
     <>
+      <Nav>
+        <LoggedOutRightChildren>
+          <>
+            <Button variant={"neutral"}>Log In</Button>
+            <Button>Sign Up</Button>
+          </>
+        </LoggedOutRightChildren>
+        <LoggedInRightChildren>
+          <>
+            <div className="w-6 h-6 rounded-full bg-slate-500"></div>
+          </>
+        </LoggedInRightChildren>
+      </Nav>
       <main className="flex items-center flex-col h-full min-h-screen">
         <section className="h-[75vh] flex items-center flex-col justify-center gap-6">
           <h1 className="text-center text-7xl">

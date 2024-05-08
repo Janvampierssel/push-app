@@ -147,4 +147,14 @@
   ul {
     @apply my-6 ml-6 list-disc [&>li]:mt-2;
   }
+
+  .background-gradient-radial {
+    background: radial-gradient(
+      ellipse,
+      rgba(235, 103, 15, 1) 0%,
+      rgba(235, 134, 15, 0) 50%
+    );
+    opacity: 15%;
+    background-repeat: no-repeat;
+  }
 }
