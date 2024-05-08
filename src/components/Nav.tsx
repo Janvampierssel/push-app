@@ -1,15 +1,7 @@
-"use client";
-
 import PushAppLogo from "@/icons/PushAppLogo";
 import Link from "next/link";
 
-type NavProps = {
-  children?: JSX.Element[];
-};
-
-const session = false;
-
-export function Nav({ children }: NavProps) {
+export default function Nav({ children }: { children?: React.ReactNode }) {
   return (
     <header className="bg-card">
       <nav
@@ -23,33 +15,5 @@ export function Nav({ children }: NavProps) {
         {children}
       </nav>
     </header>
-  );
-}
-
-export function LoggedOutRightChildren({
-  children,
-}: {
-  children?: React.ReactNode;
-}) {
-  return (
-    <>
-      {!session && children ? ( // TODO: do session check
-        <div className="flex gap-6">{children}</div>
-      ) : undefined}
-    </>
-  );
-}
-
-export function LoggedInRightChildren({
-  children,
-}: {
-  children?: React.ReactNode;
-}) {
-  return (
-    <>
-      {session && children ? ( // TODO: do session check
-        <div className="flex gap-6">{children}</div>
-      ) : undefined}
-    </>
   );
 }
