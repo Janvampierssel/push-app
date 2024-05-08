@@ -46,12 +46,13 @@ export function SignOut({
   variant = "neutral",
   size,
   children = "Sign Out",
+  callback,
 }: ButtonProps) {
   return (
     <form
       action={async () => {
         "use server";
-        await signOut();
+        await signOut({ redirectTo: callback });
       }}
     >
       <Button type="submit" className={className} variant={variant} size={size}>

@@ -70,9 +70,9 @@ export default async function Home() {
             Get your friends to bully you skinny by joining push up challenges
             together
           </p>
-          <Link href="/challenges">
-            <Button variant="neutral">Start Pushing</Button>
-          </Link>
+          <SignIn variant="neutral" provider="google" callback="/challenges">
+            Start Pushing
+          </SignIn>
         </section>
         <Image
           src={"/pushups.png"}

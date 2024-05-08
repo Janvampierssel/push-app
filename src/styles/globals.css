@@ -123,12 +123,17 @@
     @aaply text-xl text-muted-foreground;
   }
 
+  large,
   p.large {
-    @apply text-lg font-semibold;
+    @apply text-lg font-semibold leading-6;
   }
 
   p.muted {
     @apply text-sm text-muted-foreground;
+  }
+
+  p.subtle {
+    @apply text-sm leading-5;
   }
 
   small,
