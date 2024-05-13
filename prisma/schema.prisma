@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-  id            String          @id @default(uuid())
+  id            String          @id @default(cuid())
   name          String?
   username      String?
   email         String          @unique
@@ -53,16 +53,16 @@ model Session {
 }
 
 model Challenge {
-  id          Int             @id @default(autoincrement())
-  title       String
-  description String?
-  pushUpsGoal Int             @default(1000)
-  ownerID     Int             @default(0)
-  createdAt   DateTime        @default(now())
-  startsAt    DateTime?
-  endsAt      DateTime?
-  public      Boolean         @default(true)
-  users       UserChallenge[]
+  id             Int             @id @default(autoincrement())
+  name           String
+  description    String?
+  pushUpsGoal    Int             @default(1000)
+  createdAt      DateTime        @default(now())
+  startsAt       DateTime
+  endAt          DateTime?
+  durationInDays Int?            @default(7)
+  public         Boolean         @default(true)
+  users          UserChallenge[]
 }
 
 model VerificationToken {

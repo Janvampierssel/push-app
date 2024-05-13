@@ -1,14 +1,10 @@
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
 import PushAppLogo from "@/icons/PushAppLogo";
 import Image from "next/image";
-import Link from "next/link";
-import Nav from "@/components/Nav";
-import { auth, signIn, signOut } from "@/auth";
+import { auth } from "@/auth";
 import { SignIn, SignOut } from "@/components/Authentication";
-import { Heading1 } from "lucide-react";
-// import { getServerSession } from "next-auth";
-// import { authOptions } from "../../networking/auth-options";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default async function Home() {
   function Pillar({
@@ -35,31 +31,7 @@ export default async function Home() {
 
   return (
     <>
-      <Nav>
-        {session ? (
-          <div className="flex items-center gap-2">
-            <Link
-              href="https://w13b85hec2g.typeform.com/to/VWVPAhFx"
-              target="_blank"
-            >
-              <Button variant="ghost">Leave Feedback</Button>
-            </Link>
-            <SignOut variant="ghost" />
-            <Link href="/challenges">
-              <Image
-                src={session?.user?.image as string}
-                alt="User profile image"
-                width={36}
-                height={36}
-                className="rounded-full border-2 border-orange-500"
-              />
-            </Link>
-          </div>
-        ) : (
-          <SignIn provider="google" callback="/challenges" />
-        )}
-      </Nav>
-      <main className="flex items-center flex-col h-full min-h-screen">
+      <div className="flex items-center flex-col h-full min-h-screen">
         <section className="h-[75vh] flex items-center flex-col justify-center gap-6">
           <h1 className="text-center text-7xl">
             1000 Push-ups?
@@ -70,9 +42,15 @@ export default async function Home() {
             Get your friends to bully you skinny by joining push up challenges
             together
           </p>
-          <SignIn variant="neutral" provider="google" callback="/challenges">
-            Start Pushing
-          </SignIn>
+          {session ? (
+            <Button href="/challenges" variant="neutral">
+              Start Pushing
+            </Button>
+          ) : (
+            <SignIn variant="neutral" provider="google" callback="/challenges">
+              Start Pushing
+            </SignIn>
+          )}
         </section>
         <Image
           src={"/pushups.png"}
@@ -102,7 +80,7 @@ export default async function Home() {
             />
           </div>
         </section>
-      </main>
+      </div>
       <Footer />
     </>
   );
