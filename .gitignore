@@ -38,3 +38,6 @@ next-env.d.ts
 
 # line count extension output folder
 .VSCodeCounter
+
+# Backup code
+/.oldAuth/
