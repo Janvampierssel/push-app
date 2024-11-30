@@ -1,16 +1,16 @@
-import Footer from "@/components/Footer";
-import PushAppLogo from "@/icons/PushAppLogo";
-import Image from "next/image";
-import { auth } from "@/auth";
-import { SignIn, SignOut } from "@/components/Authentication";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import Footer from '@/components/Footer';
+import PushAppLogo from '@/icons/PushAppLogo';
+import Image from 'next/image';
+// import { auth } from "@/auth";
+import { SignIn, SignOut } from '@/components/Authentication';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export default async function Home() {
   function Pillar({
     title,
     description,
-    bgGradient = "bg-gradient-to-b from-[#F17827] to-[#914C0D]",
+    bgGradient = 'bg-gradient-to-b from-[#F17827] to-[#914C0D]',
   }: {
     title: string;
     description: string;
@@ -27,7 +27,7 @@ export default async function Home() {
     );
   }
 
-  const session = await auth();
+  // const session = await auth();
 
   return (
     <>
@@ -42,18 +42,18 @@ export default async function Home() {
             Get your friends to bully you skinny by joining push up challenges
             together
           </p>
-          {session ? (
+          {true ? (
             <Button href="/challenges" variant="neutral">
               Start Pushing
             </Button>
           ) : (
-            <SignIn variant="neutral" provider="google" callback="/challenges">
+            <SignIn variant="neutral" provider="google">
               Start Pushing
             </SignIn>
           )}
         </section>
         <Image
-          src={"/pushups.png"}
+          src={'/pushups.png'}
           alt="people doing pushups"
           width={1100}
           height={300}
