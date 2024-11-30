@@ -11,24 +11,15 @@ import { auth } from '@/firebase-config';
 // import { db } from '@/firebase-config';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
+import { useUser } from '@/lib/firebase-auth';
 
 export default function NavBar() {
-  const [currentUser, setCurrentUser] = useState<User | null>();
   const router = useRouter();
-
-  useEffect(() => {
-    // Subscribe to onAuthStateChanged
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setCurrentUser(currentUser); // Update the state
-    });
-
-    // Cleanup the listener on component unmount
-    return () => unsubscribe();
-  }, []);
+  const user = useUser();
 
   return (
     <Nav>
-      {currentUser ? (
+      {user ? (
         <div className="flex items-center gap-2">
           <Button
             variant="ghost"
@@ -40,7 +31,7 @@ export default function NavBar() {
           <SignOut variant="ghost" callback={() => router.push('/')} />
           <Link href="/challenges">
             <Image
-              src={currentUser.photoURL as string}
+              src={user.photoURL as string}
               alt="User profile image"
               width={36}
               height={36}

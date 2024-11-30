@@ -4,7 +4,6 @@ import Image from 'next/image';
 // import { auth } from "@/auth";
 import { SignIn, SignOut } from '@/components/Authentication';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 
 export default async function Home() {
   function Pillar({
