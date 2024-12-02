@@ -5,8 +5,10 @@ import { Card } from '@/components/ui/card';
 export default async function Page() {
   return (
     <main className="flex-1 h-full max-h-[calc(100vh-72px)] flex flex-col items-center justify-center">
-      <Card className="max-h-full h-full w-full md:w-[800px] border-0 md:border md:h-[500px] md:shadow-lg flex gap-8 flex-col">
-        <h2 className="text-center md:text-left">The Batty Boy Challenge</h2>
+      <Card className="max-h-full h-full w-full md:w-[800px] border-0 md:border md:h-[500px] md:shadow-lg flex gap-6 md:gap-8 flex-col">
+        <h1 className=" mt-4 scroll-m-20 text-3xl font-semibold tracking-tight mx-4 text-center">
+          The Batty Boy Challenge
+        </h1>
         <section className="w-full flex gap-8 ites-center md:flex-row flex-col md:overflow-hidden overflow-scroll">
           <div className="w-fit bg-white border border-[#EB670F] border-opacity-50 px-4 py-8 rounded-md shadow-md mx-auto md:mx-0">
             <AddSlider />

@@ -52,7 +52,7 @@ const AddSlider = ({ className }: { className?: string }) => {
     >
       <CircularSlider
         key={resetKey}
-        label="of 200"
+        label="Push ups"
         labelColor="coral"
         knobColor="#EB670F"
         progressColorFrom="#f69e39"
