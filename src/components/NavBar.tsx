@@ -5,11 +5,6 @@ import { SignIn, SignOut } from './Authentication';
 import Nav from './Nav';
 import { Button } from './ui/button';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
-// import { collection } from 'firebase/firestore';
-import { auth } from '@/firebase-config';
-// import { db } from '@/firebase-config';
-import { onAuthStateChanged, User } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/lib/firebase-auth';
 
