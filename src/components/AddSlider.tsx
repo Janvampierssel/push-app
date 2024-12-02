@@ -6,6 +6,7 @@ import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
 import { useUser } from '@/lib/firebase-auth';
 import { bankPushUp } from '@/utils/bankPushUp';
+import Confetti from 'react-dom-confetti';
 
 const AddSlider = ({ className }: { className?: string }) => {
   let pushUps = 0;
@@ -14,6 +15,20 @@ const AddSlider = ({ className }: { className?: string }) => {
   const [resetKey, setResetKey] = useState(0);
   const [loading, setLoading] = useState(false);
   const user = useUser();
+
+  // Confetti
+  const [isExploding, setIsExploding] = useState(false);
+  function handleExplosion() {
+    setIsExploding(true);
+    setTimeout(() => {
+      setIsExploding(false);
+    }, 10);
+  }
+  const confettiConfig = {
+    colors: ['#f36c36', '#d25827', '#f29d41', '#ff9524'],
+    startVelocity: 30,
+    dragFriction: 0.09,
+  };
 
   async function handleBank() {
     if (!user) {
@@ -31,10 +46,9 @@ const AddSlider = ({ className }: { className?: string }) => {
     } catch (error) {
       console.error('Error banking pushups: ', error);
     } finally {
-      pushUps = 0;
-      setKnobPosition(-0.49);
-      setResetKey(resetKey + 1);
+      pushUps > 0 && handleExplosion();
       setLoading(false);
+      setResetKey(resetKey + 1);
     }
   }
 
@@ -84,6 +98,10 @@ const AddSlider = ({ className }: { className?: string }) => {
       >
         {' '}
       </CircularSlider>
+
+      <div className="absolute right-1/2 left-1/2 bottom-1/2">
+        <Confetti active={isExploding} config={confettiConfig} />
+      </div>
 
       <Button onClick={handleBank} disabled={loading}>
         {loading ? 'Banking...' : 'Bank'}
