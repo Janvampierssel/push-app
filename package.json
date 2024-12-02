@@ -11,6 +11,8 @@
   "dependencies": {
     "@auth/core": "^0.30.0",
     "@auth/prisma-adapter": "^2.0.0",
+    "@firebase/firestore": "^4.7.5",
+    "@fseehawer/react-circular-slider": "^2.7.0",
     "@hookform/resolvers": "^3.3.4",
     "@prisma/client": "^5.13.0",
     "@radix-ui/react-label": "^2.0.2",
@@ -20,6 +22,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "firebase": "^11.0.2",
+    "firebase-admin": "^13.0.1",
     "lucide-react": "^0.378.0",
     "next": "14.2.3",
     "next-auth": "^5.0.0-beta.17",

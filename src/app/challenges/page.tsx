@@ -1,8 +1,7 @@
-import Challenge from "@/components/Challenge";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
+import Challenge from '@/components/Challenge';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 
 export default async function Page() {
   return (
@@ -21,14 +20,18 @@ export default async function Page() {
         <section className="w-full h-full flex flex-col justify-between">
           <div className="flex flex-col gap-2">
             <Challenge />
-            <Challenge />
           </div>
           <div>
             <Separator />
             <div className="flex justify-between items-center">
               <p className="small">New Challenge</p>
-              <Button className="mt-2" size="sm" href="/challenges/create">
-                Create
+              <Button
+                disabled
+                className="mt-2"
+                size="sm"
+                // TODO href="/challenges/create" figure out how to do easy routing
+              >
+                Create (coming soon)
               </Button>
             </div>
           </div>
