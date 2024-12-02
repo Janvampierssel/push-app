@@ -25,12 +25,7 @@ export default async function Page() {
             <Separator />
             <div className="flex justify-between items-center">
               <p className="small">New Challenge</p>
-              <Button
-                disabled
-                className="mt-2"
-                size="sm"
-                // TODO href="/challenges/create" figure out how to do easy routing
-              >
+              <Button disabled className="mt-2" size="sm">
                 Create (coming soon)
               </Button>
             </div>
