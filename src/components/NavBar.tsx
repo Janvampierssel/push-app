@@ -7,22 +7,26 @@ import { Button } from './ui/button';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/lib/firebase-auth';
+import useMediaQuery from '@/hooks/useMediaQuery';
 
 export default function NavBar() {
   const router = useRouter();
   const user = useUser();
+  const isSmallScreen = useMediaQuery('md');
 
   return (
     <Nav>
       {user ? (
         <div className="flex items-center gap-2">
-          <Button
-            variant="ghost"
-            href="https://w13b85hec2g.typeform.com/to/VWVPAhFx"
-            target="_blank"
-          >
-            Leave Feedback
-          </Button>
+          {!isSmallScreen && (
+            <Button
+              variant="ghost"
+              href="https://w13b85hec2g.typeform.com/to/VWVPAhFx"
+              target="_blank"
+            >
+              Leave Feedback
+            </Button>
+          )}
           <SignOut variant="ghost" callback={() => router.push('/')} />
           <Link href="/challenges">
             <Image

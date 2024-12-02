@@ -1,8 +1,7 @@
 import Footer from '@/components/Footer';
 import PushAppLogo from '@/icons/PushAppLogo';
 import Image from 'next/image';
-// import { auth } from "@/auth";
-import { SignIn, SignOut } from '@/components/Authentication';
+import { SignIn } from '@/components/Authentication';
 import { Button } from '@/components/ui/button';
 
 export default async function Home() {
@@ -17,27 +16,27 @@ export default async function Home() {
   }) {
     return (
       <div
-        className={`h-[400px] w-52 rounded-lg flex flex-col justify-end text-primary-foreground px-3 py-8 text-center gap-2 ${bgGradient}`}
+        className={`h-[360px] md:h-[400px] w-28 md:w-52 rounded-lg flex flex-col justify-end text-primary-foreground px-3 py-8 text-center gap-2 ${bgGradient}`}
       >
-        <h4 className="text-lg">{title}</h4>
-        <p className="small text-gray-200 tracking-tight">{description}</p>
+        <h4 className="text-base md:text-lg font-bold">{title}</h4>
+        <p className="small text-gray-200 md:tracking-tight font-light">
+          {description}
+        </p>
         <div className=" bg-gradient-to-b from-[#F52714] to-[#881C07]"></div>
       </div>
     );
   }
 
-  // const session = await auth();
-
   return (
     <>
       <div className="flex items-center flex-col h-full min-h-screen">
-        <section className="h-[75vh] flex items-center flex-col justify-center gap-6">
-          <h1 className="text-center text-7xl">
+        <section className="h-[60vh] md:h-[75vh] flex items-center flex-col justify-center gap-6">
+          <h1 className="text-center text-[40px] md:text-7xl -mt-16 md:mt-0">
             1000 Push-ups?
             <br />
             <span className="text-primary">Give me 3 days.</span>
           </h1>
-          <p className="large w-96 text-center">
+          <p className="text-base font-semibold md:text-large w-96 text-center">
             Get your friends to bully you skinny by joining push up challenges
             together
           </p>
@@ -64,14 +63,14 @@ export default async function Home() {
               Pillars of Trust
             </h2>
           </div>
-          <div className="flex items-center gap-16 justify-center">
+          <div className="flex items-center gap-3 md:gap-16 justify-center">
             <Pillar
               title="Honesty"
               description="Banking honestly is about being true to yourself"
             />
             <Pillar
               title="Community"
-              description="We’re here not to push just yourself, but also each other"
+              description="We're here not to push just yourself, but also each other"
             />
             <Pillar
               title="Friendly Competition"
