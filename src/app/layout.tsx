@@ -1,10 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter as FontSans } from 'next/font/google';
-import '../styles/globals.css';
+import '@/styles/globals.css';
 import { cn } from '@/lib/utils';
-// import { SessionProvider } from 'next-auth/react';
-import Nav from '@/components/Nav';
-// import { auth } from '@/auth';
 import NavBar from '@/components/NavBar';
 
 const fontSans = FontSans({
@@ -22,20 +19,17 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const session = await auth();
-
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <body
         className={cn(
-          'min-h-screen bg-background font-sans antialiased flex flex-col',
+          'w-screen min-h-screen h-full bg-background font-sans antialiased flex flex-col',
           fontSans.variable
         )}
       >
         <NavBar />
+        <div className="flex-grow">{children}</div>
         {/* Background Radial Gradient */}
-        {/* <SessionProvider>{children}</SessionProvider> */}
-        {children}
         <div className="absolute h-screen w-screen overflow-hidden pointer-events-none">
           <div className="background-gradient-radial h-full absolute left-0 right-0 mx-auto top-1/3 -z-10 pointer-events-none"></div>
         </div>

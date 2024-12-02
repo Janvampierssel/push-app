@@ -91,7 +91,7 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border box-border;
   }
   body {
     @apply bg-background text-foreground;
@@ -104,7 +104,7 @@
   }
 
   h2 {
-    @apply mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0;
+    @apply mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0;
   }
 
   h3 {
@@ -120,7 +120,7 @@
   }
 
   p.lead {
-    @aaply text-xl text-muted-foreground;
+    @apply text-xl text-muted-foreground;
   }
 
   large,

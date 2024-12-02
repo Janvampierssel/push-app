@@ -17,7 +17,7 @@ function PlayerCard({
 }) {
   return (
     <div
-      className="h-14 flex justify-between w-full rounded-md border border-slate-200 items-center px-3"
+      className="min-h-14 flex justify-between w-full rounded-md border border-slate-200 items-center px-3"
       id={id}
     >
       <div className="flex gap-2 items-center">

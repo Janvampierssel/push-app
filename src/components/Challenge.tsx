@@ -8,9 +8,13 @@ export default function Challenge() {
     <Card className="w-full p-3 border-slate-200 flex justify-between items-center">
       <div className="flex flex-col gap-2">
         <p className="small font-bold">The Batty Boy Challenge</p>
-        <div className="flex gap-1">
-          <Badge variant="outline">3000 Push-ups</Badge>
-          <Badge variant="outline">14 Days</Badge>
+        <div className="flex-wrap">
+          <Badge variant="outline" className="mr-1">
+            3000 Push-ups
+          </Badge>
+          <Badge variant="outline" className="mr-1">
+            14 Days
+          </Badge>
           <Badge variant="outline">4+ Contestants</Badge>
         </div>
       </div>

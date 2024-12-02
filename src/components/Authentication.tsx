@@ -1,8 +1,5 @@
 'use client';
 
-// import { signIn, signOut } from "@/auth";
-// import { Button } from "./ui/button";
-
 import { auth, googleProvider } from '@/firebase-config';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { Button } from './ui/button';
@@ -26,7 +23,7 @@ type ButtonProps = {
   children?: React.ReactNode;
 };
 
-const doSignIn = (callback?: () => void) => {
+export const doSignIn = (callback?: () => void) => {
   console.log('Dosignin!');
   signInWithPopup(auth, googleProvider)
     .then((result) => {
@@ -41,7 +38,7 @@ const doSignIn = (callback?: () => void) => {
     });
 };
 
-const doSignOut = (callback?: () => void) => {
+export const doSignOut = (callback?: () => void) => {
   signOut(auth)
     .then(() => {
       callback?.();
@@ -65,16 +62,6 @@ export function SignIn({
   }
 
   return (
-    // <form
-    //   action={async () => {
-    //     "use server";
-    //     await signIn(provider, { redirectTo: callback });
-    //   }}
-    // >
-    //   <Button type="submit" className={className} variant={variant} size={size}>
-    //     {children}
-    //   </Button>
-    // </form>
     <Button
       className={className}
       variant={variant}
@@ -94,16 +81,6 @@ export function SignOut({
   callback,
 }: ButtonProps) {
   return (
-    // <form
-    //   action={async () => {
-    //     'use server';
-    //     await signOut({ redirectTo: callback });
-    //   }}
-    // >
-    //   <Button type="submit" className={className} variant={variant} size={size}>
-    //     {children}
-    //   </Button>
-    // </form>
     <Button
       className={className}
       variant={variant}
