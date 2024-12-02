@@ -13,6 +13,7 @@ export default function Leaderboard() {
         name={user.name}
         pushups={user.pushUpsCurrentRound}
         index={index}
+        key={user.name + '_' + index}
       />
     ));
   } else return <>No users</>;

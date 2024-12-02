@@ -14,10 +14,7 @@ export default function PlayerCard({
   index?: number;
 }) {
   return (
-    <div
-      className="min-h-14 flex justify-between w-full rounded-md border border-slate-200 items-center px-3"
-      id={name + '_' + index}
-    >
+    <div className="min-h-14 flex justify-between w-full rounded-md border border-slate-200 items-center px-3">
       <div className="flex gap-2 items-center">
         {index !== undefined && (
           <span
