@@ -39,7 +39,7 @@ function PlayerCard({
 }
 
 export default function Leaderboard() {
-  const [users, setUsers] = useState<any>([]);
+  const [users, setUsers] = useState<never[] | DocumentData>([]);
   const [loading, setLoading] = useState(true);
 
   async function fetchUsers() {
