@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import { fetchDocumentById } from './db';
 import { doc, setDoc, updateDoc } from '@firebase/firestore';
 
-export function getCurrentUser(): [User | null, boolean] {
+export function useCurrentUser(): [User | null, boolean] {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [userLoading, setUserLoading] = useState(true);
 

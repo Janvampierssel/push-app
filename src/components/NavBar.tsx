@@ -6,12 +6,12 @@ import Nav from './Nav';
 import { Button } from './ui/button';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { getCurrentUser } from '@/lib/firebase-auth';
+import { useCurrentUser } from '@/lib/firebase-auth';
 import useMediaQuery from '@/hooks/useMediaQuery';
 
 export default function NavBar() {
   const router = useRouter();
-  const [currentUser, userLoading] = getCurrentUser();
+  const [currentUser, userLoading] = useCurrentUser();
   const isSmallScreen = useMediaQuery('md');
 
   return (

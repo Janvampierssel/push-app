@@ -4,7 +4,7 @@ import { useState } from 'react';
 import CircularSlider from '@fseehawer/react-circular-slider';
 import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
-import { getCurrentUser } from '@/lib/firebase-auth';
+import { useCurrentUser } from '@/lib/firebase-auth';
 import { bankPushUp } from '@/utils/bankPushUp';
 import Confetti from 'react-dom-confetti';
 
@@ -14,7 +14,7 @@ const AddSlider = ({ className }: { className?: string }) => {
   const [knobPosition, setKnobPosition] = useState(-0.49);
   const [resetKey, setResetKey] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [currentUser] = getCurrentUser();
+  const [currentUser] = useCurrentUser();
 
   // Confetti
   const [isExploding, setIsExploding] = useState(false);
