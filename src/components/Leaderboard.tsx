@@ -11,6 +11,7 @@ export default function Leaderboard() {
     return users?.map((user, index) => (
       <PlayerCard
         name={user.name}
+        photoUrl={user.photoUrl}
         pushups={user.pushUpsCurrentRound}
         index={index}
         key={user.name + '_' + index}

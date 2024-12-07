@@ -1,16 +1,15 @@
 'use client';
 
-import { useUser } from '@/lib/firebase-auth';
-import { doSignIn } from './Authentication';
+import { doSignIn, getCurrentUser } from '@/lib/firebase-auth';
 import { Button } from './ui/button';
 import { useRouter } from 'next/navigation';
 
 export default function StartPushingButton() {
   const router = useRouter();
-  const user = useUser();
+  const [currentUser] = getCurrentUser();
 
   async function handleOnClick() {
-    if (user) {
+    if (currentUser) {
       router.push('/challenges');
     } else {
       doSignIn(() => router.push('/challenges'));

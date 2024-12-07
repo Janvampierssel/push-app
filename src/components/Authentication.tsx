@@ -1,9 +1,8 @@
 'use client';
 
-import { auth, googleProvider } from '@/firebase-config';
-import { signInWithPopup, signOut } from 'firebase/auth';
 import { Button } from './ui/button';
 import { useRouter } from 'next/navigation';
+import { doSignIn, doSignOut } from '@/lib/firebase-auth';
 
 type ButtonProps = {
   className?: string;
@@ -20,32 +19,8 @@ type ButtonProps = {
   size?: 'default' | 'sm' | 'lg' | 'icon' | null | undefined;
   callback?: () => void;
   provider?: 'google' | undefined;
+  disabled?: boolean;
   children?: React.ReactNode;
-};
-
-export const doSignIn = (callback?: () => void) => {
-  console.log('Dosignin!');
-  signInWithPopup(auth, googleProvider)
-    .then((result) => {
-      callback?.();
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      console.error(errorCode, errorMessage, email);
-    });
-};
-
-export const doSignOut = (callback?: () => void) => {
-  signOut(auth)
-    .then(() => {
-      callback?.();
-    })
-    .catch((error) => {
-      alert('sign out error: ' + error);
-    });
 };
 
 export function SignIn({
@@ -53,7 +28,7 @@ export function SignIn({
   variant = 'default',
   size,
   callback,
-  provider,
+  disabled,
   children = 'Sign In',
 }: ButtonProps) {
   const router = useRouter();
@@ -67,6 +42,7 @@ export function SignIn({
       variant={variant}
       size={size}
       onClick={() => doSignIn(callback ?? defaultCallback)}
+      disabled={disabled}
     >
       {children}
     </Button>
@@ -79,6 +55,7 @@ export function SignOut({
   size,
   children = 'Sign Out',
   callback,
+  disabled,
 }: ButtonProps) {
   return (
     <Button
@@ -86,6 +63,7 @@ export function SignOut({
       variant={variant}
       size={size}
       onClick={() => doSignOut(callback)}
+      disabled={disabled}
     >
       {children}
     </Button>

@@ -5,12 +5,12 @@ import Image from 'next/image';
 export default function PlayerCard({
   name = 'No name',
   pushups = 0,
-  imageUrl,
+  photoUrl,
   index,
 }: {
   name: string;
   pushups: number;
-  imageUrl?: string;
+  photoUrl?: string;
   index?: number;
 }) {
   return (
@@ -27,8 +27,14 @@ export default function PlayerCard({
           {index === 0 && (
             <CrownIcon className="absolute -top-3.5 left-2 rotate-[15deg]" />
           )}
-          {imageUrl ? (
-            <Image src={imageUrl} alt="profile picture" />
+          {photoUrl ? (
+            <Image
+              src={photoUrl}
+              alt="profile picture"
+              width={32}
+              height={32}
+              className="rounded-full"
+            />
           ) : (
             <ProfilePicture />
           )}
