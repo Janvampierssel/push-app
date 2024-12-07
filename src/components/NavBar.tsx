@@ -6,17 +6,17 @@ import Nav from './Nav';
 import { Button } from './ui/button';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useUser } from '@/lib/firebase-auth';
+import { useCurrentUser } from '@/lib/firebase-auth';
 import useMediaQuery from '@/hooks/useMediaQuery';
 
 export default function NavBar() {
   const router = useRouter();
-  const user = useUser();
+  const [currentUser, userLoading] = useCurrentUser();
   const isSmallScreen = useMediaQuery('md');
 
   return (
     <Nav>
-      {user ? (
+      {currentUser !== null ? (
         <div className="flex items-center gap-2">
           {!isSmallScreen && (
             <Button
@@ -30,7 +30,7 @@ export default function NavBar() {
           <SignOut variant="ghost" callback={() => router.push('/')} />
           <Link href="/challenges">
             <Image
-              src={user.photoURL as string}
+              src={currentUser.photoURL as string}
               alt="User profile image"
               width={36}
               height={36}
@@ -39,7 +39,11 @@ export default function NavBar() {
           </Link>
         </div>
       ) : (
-        <SignIn provider="google" callback={() => router.push('/challenges')} />
+        <SignIn
+          disabled={userLoading}
+          provider="google"
+          callback={() => router.push('/challenges')}
+        />
       )}
     </Nav>
   );

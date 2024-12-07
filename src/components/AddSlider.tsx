@@ -4,7 +4,7 @@ import { useState } from 'react';
 import CircularSlider from '@fseehawer/react-circular-slider';
 import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
-import { useUser } from '@/lib/firebase-auth';
+import { useCurrentUser } from '@/lib/firebase-auth';
 import { bankPushUp } from '@/utils/bankPushUp';
 import Confetti from 'react-dom-confetti';
 
@@ -14,7 +14,7 @@ const AddSlider = ({ className }: { className?: string }) => {
   const [knobPosition, setKnobPosition] = useState(-0.49);
   const [resetKey, setResetKey] = useState(0);
   const [loading, setLoading] = useState(false);
-  const user = useUser();
+  const [currentUser] = useCurrentUser();
 
   // Confetti
   const [isExploding, setIsExploding] = useState(false);
@@ -31,7 +31,7 @@ const AddSlider = ({ className }: { className?: string }) => {
   };
 
   async function handleBank() {
-    if (!user) {
+    if (currentUser === null) {
       alert('Please log in first!');
       return;
     }
@@ -42,11 +42,12 @@ const AddSlider = ({ className }: { className?: string }) => {
 
     setLoading(true);
     try {
-      await bankPushUp(user.uid, pushUps);
+      await bankPushUp(currentUser.uid, pushUps);
     } catch (error) {
       console.error('Error banking pushups: ', error);
     } finally {
-      pushUps > 0 && handleExplosion();
+      // 30% chance that the explosion occurs
+      pushUps > 0 && Math.floor(Math.random() * 10) < 3 && handleExplosion();
       setLoading(false);
       setResetKey(resetKey + 1);
     }
