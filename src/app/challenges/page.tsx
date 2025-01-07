@@ -2,8 +2,11 @@ import Challenge from '@/components/Challenge';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import fetchChallenges from '@/utils/fetchChallenges';
 
 export default async function Page() {
+  const challenges = await fetchChallenges();
+
   return (
     <main className="flex flex-col items-center justify-center h-full max-h-[calc(100vh-72px)]">
       <Card className="w-full md:w-[800px] h-full md:h-[500px] border-0 md:border md:shadow-lg flex gap-8 flex-col md:flex-row">
@@ -19,7 +22,11 @@ export default async function Page() {
         </div>
         <section className="w-full h-full flex flex-col justify-between overflow-scroll">
           <div className="flex flex-col gap-2 overflow-scroll">
-            <Challenge />
+            {challenges.map((challenge) => (
+              <div key={challenge.id}>
+                <Challenge challenge={challenge} />
+              </div>
+            ))}
           </div>
           <div>
             <Separator />

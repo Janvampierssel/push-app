@@ -29,6 +29,9 @@ yarn-error.log*
 .env*.local
 .env
 
+# Firestore Admin SDK
+push-app-admin-sdk.json
+
 # vercel
 .vercel
 
